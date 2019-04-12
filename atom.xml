@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.qingheyang.studio:1314/"/>
-  <updated>2019-04-11T01:38:54.746Z</updated>
+  <updated>2019-04-12T10:16:46.063Z</updated>
   <id>http://www.qingheyang.studio:1314/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hexo博客那点事，一些技术上的延伸</title>
+    <link href="http://www.qingheyang.studio:1314/2019/03/12/Hexo%E5%8D%9A%E5%AE%A2%E9%82%A3%E7%82%B9%E4%BA%8B%EF%BC%8C%E4%B8%80%E4%BA%9B%E6%8A%80%E6%9C%AF%E4%B8%8A%E7%9A%84%E5%BB%B6%E4%BC%B8/"/>
+    <id>http://www.qingheyang.studio:1314/2019/03/12/Hexo博客那点事，一些技术上的延伸/</id>
+    <published>2019-03-12T09:56:00.000Z</published>
+    <updated>2019-04-12T10:16:46.063Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>2018年年初的时候我弄得hexo博客，到现在满打满算1年多，在上半年用的比较多，下班年我就销声匿迹了，很少写，这与懒不懒惰无关，是因为我自己的服务器遭受到了重创，数据全部被清空了，也就是说，我个人的服务全都挂了。<br>大概就是自己弄得文件系统、博客系统、游戏服务、还有一大堆费心写的费心编译的项目，全GG，至于为什么没有备份，因为那是我自己用旧电脑改装的服务器啊喂！！！<br>我眼前还浮现着之前美滋滋弄得漂亮的博客的样子，就是下面这个样子，我还完善了很多漂亮的主题。<br><img src="http://www.qingheyang.studio:8000/blog_image/2019-03-12/pic1.jpg" alt="mark"><br><img src="http://www.qingheyang.studio:8000/blog_image/2019-03-12/pic2.jpg" alt="mark"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;2018年年初的时候我弄得hexo博客，到现在满打满算1年多，在上半年用的比较多，下班年我就销声匿迹了，很少写，这与懒不懒惰无关，是因为我自
+      
+    
+    </summary>
+    
+      <category term="综合技术" scheme="http://www.qingheyang.studio:1314/categories/%E7%BB%BC%E5%90%88%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="linux" scheme="http://www.qingheyang.studio:1314/tags/linux/"/>
+    
+      <category term="hexo" scheme="http://www.qingheyang.studio:1314/tags/hexo/"/>
+    
+      <category term="nginx" scheme="http://www.qingheyang.studio:1314/tags/nginx/"/>
+    
+  </entry>
   
   <entry>
     <title>关于互联网技术</title>
