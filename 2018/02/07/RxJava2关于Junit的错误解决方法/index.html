@@ -81,7 +81,7 @@
 </code></pre>
 <p>注：因为我用的gradle版本比较高，所以‘compile’ 被 ‘implementation’取代了。junit应该是自带的，所以也可以不用引入。  </p>
 <h2 id="Rxjava2-amp-Presenter"><a href="#Rxjava2-amp-Presenter" class="headerlink" title="Rxjava2 &amp; Presenter"></a>Rxjava2 &amp; Presenter</h2><p>一个Rxjava的例子,因为我的项目是以MVP为基础的，所以这个demo也是以MVP为基础的，没有MVP基础的可以先去学一下，项目是简化了很多版的MVP框架。<br>我先将我整个Demo给贴上，在叙述具体的问题解决方式。  </p>
-<h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><img src="/2018/02/07/RxJava2关于Junit的错误解决方法/pic1.png">  
+<h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><p><img src="http://www.qingheyang.studio:8000/blog_image/2018-02-07/pic1.png" alt="mark">  </p>
 <h3 id="Presenter"><a href="#Presenter" class="headerlink" title="Presenter"></a>Presenter</h3><p>在Presenter层编写获取信息的代码，处理数据层信息，将结果反馈给视图层，以下是我Presenter层的代码:  </p>
 <pre><code class="Java"><span class="keyword">package</span> com.qingheyang.testjr;
 
@@ -327,10 +327,7 @@
 </code></pre>
 <h2 id="Junit"><a href="#Junit" class="headerlink" title="Junit"></a>Junit</h2><ul>
 <li>如果你已经依赖了Junit了，请继续往下看，没有的话，我上面已经附上了依赖。</li>
-<li>新建一个Presenter的单元测试类。<br>在要测试的方法上面点击右键，选择goto，选择最后一个test。  <img src="/2018/02/07/RxJava2关于Junit的错误解决方法/pic2.png">  
-点击后出现Create New Test，点击。  <img src="/2018/02/07/RxJava2关于Junit的错误解决方法/pic3.png">  
-出现Create Test的对话框，勾选setUp，tearDown，以及你想测试的方法，getUser，点击OK。  <img src="/2018/02/07/RxJava2关于Junit的错误解决方法/pic4.png">  
-左边的列表中会出现刚才建立的MainPresenter。  <img src="/2018/02/07/RxJava2关于Junit的错误解决方法/pic5.png">  </li>
+<li>新建一个Presenter的单元测试类。<br>在要测试的方法上面点击右键，选择goto，选择最后一个test。<br><img src="http://www.qingheyang.studio:8000/blog_image/2018-02-07/pic2.png" alt="mark"><br>点击后出现Create New Test，点击。<br><img src="http://www.qingheyang.studio:8000/blog_image/2018-02-07/pic3.png" alt="mark"><br>出现Create Test的对话框，勾选setUp，tearDown，以及你想测试的方法，getUser，点击OK。<br><img src="http://www.qingheyang.studio:8000/blog_image/2018-02-07/pic4.png" alt="mark"><br>左边的列表中会出现刚才建立的MainPresenter。<br><img src="http://www.qingheyang.studio:8000/blog_image/2018-02-07/pic5.png" alt="mark">  </li>
 <li>test代码  </li>
 </ul>
 <pre><code class="Java"><span class="keyword">package</span> com.qingheyang.testjr;
@@ -368,7 +365,7 @@
 </code></pre>
 <p>以上就是rxjava+MVP的全部代码。<br>当然这样肯定会出错的。<br>顺便说一下，服务器搭建是Linux平台上面随便启动的一个tomcat服务器。  </p>
 <hr>
-<h1 id="Run-amp-Error"><a href="#Run-amp-Error" class="headerlink" title="Run &amp; Error"></a>Run &amp; Error</h1><p>运行一下，单元测试的运行是在方法上面运行：<br>可以点击左边的运行按钮，也可以对方法点击右键。<br><img src="/2018/02/07/RxJava2关于Junit的错误解决方法/pic7.png"><br>运行过后会发现报错，原因一是因为部分Android的API，Junit不支持，没法做到完美支持，会报错。<br>解决方法有两个。  </p>
+<h1 id="Run-amp-Error"><a href="#Run-amp-Error" class="headerlink" title="Run &amp; Error"></a>Run &amp; Error</h1><p>运行一下，单元测试的运行是在方法上面运行：<br>可以点击左边的运行按钮，也可以对方法点击右键。<br><img src="http://www.qingheyang.studio:8000/blog_image/2018-02-07/pic7.png" alt="mark"><br>运行过后会发现报错，原因一是因为部分Android的API，Junit不支持，没法做到完美支持，会报错。<br>解决方法有两个。  </p>
 <ul>
 <li>依赖mock。</li>
 <li>注释掉关于Android的代码。（我选择注释）<br>也就是Rxjava中观察者中的onNext方法中关于Android的部分代码要注释。  <pre><code class="Java"><span class="meta">@Override</span>
@@ -382,7 +379,7 @@
 </code></pre>
 </li>
 </ul>
-<p>再次运行。<br><img src="/2018/02/07/RxJava2关于Junit的错误解决方法/pic8.png"><br>再次发现错误，也是我遇到的核心问题：Rxjava2在Junit中的线程问题，以及如何用API来解决它。  </p>
+<p>再次运行。<br><img src="http://www.qingheyang.studio:8000/blog_image/2018-02-07/pic8.png" alt="mark"><br>再次发现错误，也是我遇到的核心问题：Rxjava2在Junit中的线程问题，以及如何用API来解决它。  </p>
 <hr>
 <h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><p>这个问题粗略的说一下其实也很简单，就是Rxjava2的子线程与主线程在电脑上面运行无法同步的问题。<br>解决方法就是将子线程与安卓UI线程调整至同一线程即可。<br>也搜索过很多网上的解决方法，基本都是Rxjava1的解决方法，Rxjava2的又一般是kotlin，直接上代码吧。  </p>
 <pre><code class="Java"><span class="keyword">package</span> com.qingheyang.testjr;
@@ -464,9 +461,9 @@
        presenter = <span class="keyword">null</span>;
    }
 </code></pre>
-<p>在MainPresenterTest中，setUp以及tearDown中分别调整下代码即可。<br>结果如下:<br><img src="/2018/02/07/RxJava2关于Junit的错误解决方法/pic9.png">  </p>
+<p>在MainPresenterTest中，setUp以及tearDown中分别调整下代码即可。<br>结果如下:<br><img src="http://www.qingheyang.studio:8000/blog_image/2018-02-07/pic9.png" alt="mark">  </p>
 <hr>
-<p>这个项目也可以在我的github中找到，如果有帮到你，欢迎给一个star。<br>链接可以在下方GitHub图标获取。<br>以上</p>
+<p>这个项目也可以在我的github中找到，如果有帮到你，欢迎给一个star。<br>链接可以在主页GitHub图标获取。<br>以上</p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">

@@ -68,11 +68,9 @@
 <li>服务器：用的机器是一台老联想，8G内存，i5cpu，256 SSD</li>
 <li>域名：<a href="http://www.shouwangzhe.space" target="_blank" rel="noopener">www.shouwangzhe.space</a> (大佬不要攻击我,现在已经更换了)</li>
 <li>MacBookPro: Mac OS</li>
-<li>工具:Shuttle<br><img src="http://www.qingheyang.studio:8000/blog_image/2018-02-07/pic1.png" alt="mark"></li>
+<li>工具:Shuttle<br><img src="http://www.qingheyang.studio:8000/blog_image/2018-03-15/pic1.png" alt="mark"><br>解释一下为什么不用阿里云：之所以没有选择阿里云服务器，主要因为是觉得没必要，1Mb的速度，1G内存，1核cpu，一个月100多，何必呢？  </li>
 </ul>
-<img src="/2018/03/15/为Mac打造一个顺手的链接Linux工具/pic1.png">  
-<p>解释一下为什么不用阿里云：之所以没有选择阿里云服务器，主要因为是觉得没必要，1Mb的速度，1G内存，1核cpu，一个月100多，何必呢？  </p>
-<h1 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h1><p>效果基本是很傻瓜的一种方式，顶部的图标点击后，选择哪个操作，选择登陆远程服务器:<br><img src="/2018/03/15/为Mac打造一个顺手的链接Linux工具/pic2.png"><br>然后就会蹦出控制台的窗口:<br><img src="/2018/03/15/为Mac打造一个顺手的链接Linux工具/pic3.png"><br>然后我们就能愉快的ls了。<br>或许你觉得这个有什么意思，用命令不还是能解决吗，打开控制台，输入：  </p>
+<h1 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h1><p>效果基本是很傻瓜的一种方式，顶部的图标点击后，选择哪个操作，选择登陆远程服务器:<br><img src="http://www.qingheyang.studio:8000/blog_image/2018-03-15/pic2.png" alt="mark"><br>然后就会蹦出控制台的窗口:<br><img src="http://www.qingheyang.studio:8000/blog_image/2018-03-15/pic3.png" alt="mark"><br>然后我们就能愉快的ls了。<br>或许你觉得这个有什么意思，用命令不还是能解决吗，打开控制台，输入：  </p>
 <pre><code>ssh -p 22 xxx@www.域名.com
 #输入密码
 </code></pre><p>不一样能进去吗？<br>如果遇到复杂问题，例如你想把自己的hexo博客推送到githup.io上去呢。  </p>
@@ -88,7 +86,7 @@ Enter passphrase <span class="keyword">for</span> key <span class="string">'/hom
 </code></pre>
 <p>所以我觉得自动化还是挺重要的,点击一下，一步到位。  </p>
 <h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><p>实现的方式也是，会的不难，难的不会，基本是由两部分组成，Linux的expact命令，以及Shuttle。  </p>
-<h2 id="Shuttle"><a href="#Shuttle" class="headerlink" title="Shuttle"></a>Shuttle</h2><p>Shuttle 是一款图形界面化的cmd命令工具。<br>下载完后点击图标，就可以在顶部的导航栏找到他了，至于怎么用，点击这个按钮:<br><img src="/2018/03/15/为Mac打造一个顺手的链接Linux工具/pic4.png"><br>会打开一个文档，json格式的，也就是软件的配置文件(缩进好像有点问题)：  </p>
+<h2 id="Shuttle"><a href="#Shuttle" class="headerlink" title="Shuttle"></a>Shuttle</h2><p>Shuttle 是一款图形界面化的cmd命令工具。<br>下载完后点击图标，就可以在顶部的导航栏找到他了，至于怎么用，点击这个按钮:<br><img src="http://www.qingheyang.studio:8000/blog_image/2018-03-15/pic4.png" alt="mark"><br>会打开一个文档，json格式的，也就是软件的配置文件(缩进好像有点问题)：  </p>
 <pre><code class="json">{
     <span class="attr">"_comments"</span>: [],
     <span class="attr">"editor"</span>: <span class="string">"default"</span>,
@@ -166,7 +164,7 @@ Enter passphrase <span class="keyword">for</span> key <span class="string">'/hom
     ]
 }
 </code></pre>
-<p>上面的是我的配置，解析一下这个json：<br><img src="/2018/03/15/为Mac打造一个顺手的链接Linux工具/pic5.png"><br>也就是对应我的效果那节的那个图，配置文件中的host节点是我们要用到的节点，有点编程基础的也知道这个节点是一个JsonArray。<br>下面可以加很多节点，每一个节点都是一级菜单，大体目录就这么多，每个节点的配置如下：  </p>
+<p>上面的是我的配置，解析一下这个json：<br>{<img src="http://www.qingheyang.studio:8000/blog_image/2018-03-15/pic5.png" alt="mark"><br>也就是对应我的效果那节的那个图，配置文件中的host节点是我们要用到的节点，有点编程基础的也知道这个节点是一个JsonArray。<br>下面可以加很多节点，每一个节点都是一级菜单，大体目录就这么多，每个节点的配置如下：  </p>
 <pre><code class="json">{
   <span class="attr">"cmd"</span>: <span class="string">".//linux自动脚本/login.sh"</span>,
   <span class="attr">"inTerminal"</span>: <span class="string">"tab"</span>,
@@ -190,11 +188,11 @@ Enter passphrase <span class="keyword">for</span> key <span class="string">'/hom
   <span class="attr">"title"</span>: <span class="string">"ShouWangZhe 1+"</span>
 }
 </code></pre>
-<p>效果就是这样的：<br><img src="/2018/03/15/为Mac打造一个顺手的链接Linux工具/pic7.png"><br>以上大体就是Shuttle的应用，它就是读取cmd节点的命令，然后执行。  </p>
+<p>效果就是这样的：<br><img src="http://www.qingheyang.studio:8000/blog_image/2018-03-15/pic7.png" alt="mark"><br>以上大体就是Shuttle的应用，它就是读取cmd节点的命令，然后执行。  </p>
 <h2 id="expact"><a href="#expact" class="headerlink" title="expact"></a>expact</h2><p>很明显，上面的命令我输入了执行脚本的命令。  </p>
 <pre><code class="bash">.//linux自动脚本/login.sh
 </code></pre>
-<p>我在Mac目录下面建立了“linux自动脚本”这个文件夹，专门用来存放我的脚本。<br><img src="/2018/03/15/为Mac打造一个顺手的链接Linux工具/pic6.png"><br>例如想要登陆远程服务器的脚本(login.sh)内容如下：  </p>
+<p>我在Mac目录下面建立了“linux自动脚本”这个文件夹，专门用来存放我的脚本。<br><img src="http://www.qingheyang.studio:8000/blog_image/2018-03-15/pic6.png" alt="mark"><br>例如想要登陆远程服务器的脚本(login.sh)内容如下：  </p>
 <pre><code class="bash"><span class="comment">#!/usr/bin/expect -f</span>
 <span class="built_in">set</span> psw 123456
 
@@ -229,7 +227,7 @@ expect eof
 <span class="built_in">exit</span> 0
 </code></pre>
 <p>效果就不展示了，就是省去了上传博客的过程，一步到位，有了这个技巧，就可以做很多方便的功能，也算是做到了优雅的开发了。  </p>
-<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>弄这套花了我一天的时间，摸索起来还是很费劲的，好在效果很好。<br>最后，京紫镇楼。<br><img src="/2018/03/15/为Mac打造一个顺手的链接Linux工具/pic8.jpg"></p>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>弄这套花了我一天的时间，摸索起来还是很费劲的，好在效果很好。<br>最后，京紫镇楼。<br><img src="http://www.qingheyang.studio:8000/blog_image/2018-03-15/pic8.jpg" alt="mark"></p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
