@@ -1,0 +1,322 @@
+
+<!DOCTYPE html>
+<html lang="Chinese" class="loading">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>为Mac打造一个顺手的链接Linux工具 - 清河阳</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Android,"> 
+    <meta name="description" content="三流执行工程师,背景Mac的话也买了有一段时间，2017款的，作为一个Android程序员，虽然买苹果的本子会让人觉得有种投敌的感觉，但是不得不说，真的实在是太好用了。作为一个Android程序员，怎么能离开Lin,"> 
+    <meta name="author" content="QingHeYang"> 
+    <link rel="alternative" href="atom.xml" title="清河阳" type="application/atom+xml"> 
+    <link rel="icon" href="/img/ocean_q_small.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">清河阳</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://www.qingheyang.studio:1314"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">为Mac打造一个顺手的链接Linux工具</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class="main">
+        <h1 class="title">为Mac打造一个顺手的链接Linux工具</h1>
+        <div class="stuff">
+            <span>三月 15, 2018</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Linux/">Linux</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>Mac的话也买了有一段时间，2017款的，作为一个Android程序员，虽然买苹果的本子会让人觉得有种投敌的感觉，但是不得不说，真的实在是太好用了。<br>作为一个Android程序员，怎么能离开Linux呢？无论是NDK还是.so库的编译，再到ffmpeg，都需要用到Linux。<br>因为朋友的关系，我对Linux还算比较熟悉，能够使用基本的命令，cd ，ls -al，htop这些命令就不说了，makefile也写过部分，脚本也写过一部分，不过应用场景较少罢了。<br>那么问题就来了，与Linux同源的Mac OS会不会对Linux开发有着更好的支持。<br><a id="more"></a>   </p>
+<h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><ul>
+<li>Linux服务器：Ubuntu 16.04</li>
+<li>服务器：用的机器是一台老联想，8G内存，i5cpu，256 SSD</li>
+<li>域名：<a href="http://www.shouwangzhe.space" target="_blank" rel="noopener">www.shouwangzhe.space</a> (大佬不要攻击我,现在已经更换了)</li>
+<li>MacBookPro: Mac OS</li>
+<li>工具:Shuttle<br><img src="http://www.qingheyang.studio:8000/blog_image/2018-02-07/pic1.png" alt="mark"></li>
+</ul>
+<img src="/2018/03/15/为Mac打造一个顺手的链接Linux工具/pic1.png">  
+<p>解释一下为什么不用阿里云：之所以没有选择阿里云服务器，主要因为是觉得没必要，1Mb的速度，1G内存，1核cpu，一个月100多，何必呢？  </p>
+<h1 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h1><p>效果基本是很傻瓜的一种方式，顶部的图标点击后，选择哪个操作，选择登陆远程服务器:<br><img src="/2018/03/15/为Mac打造一个顺手的链接Linux工具/pic2.png"><br>然后就会蹦出控制台的窗口:<br><img src="/2018/03/15/为Mac打造一个顺手的链接Linux工具/pic3.png"><br>然后我们就能愉快的ls了。<br>或许你觉得这个有什么意思，用命令不还是能解决吗，打开控制台，输入：  </p>
+<pre><code>ssh -p 22 xxx@www.域名.com
+#输入密码
+</code></pre><p>不一样能进去吗？<br>如果遇到复杂问题，例如你想把自己的hexo博客推送到githup.io上去呢。  </p>
+<pre><code class="bash"><span class="comment">#首先要</span>
+xxx@Lenovo-IdeaPad-Y480:~$ <span class="built_in">cd</span> /hexo
+<span class="comment">#然后1</span>
+xxx@Lenovo-IdeaPad-Y480:~/hexo$ hexo g
+<span class="comment">#然后2</span>
+xxx@Lenovo-IdeaPad-Y480:~/hexo$ hexo d
+<span class="comment">#然后3 输入你git的本地密码</span>
+Enter passphrase <span class="keyword">for</span> key <span class="string">'/home/star/.ssh/id_rsa'</span>: xxxxxx
+<span class="comment">#推送成功</span>
+</code></pre>
+<p>所以我觉得自动化还是挺重要的,点击一下，一步到位。  </p>
+<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><p>实现的方式也是，会的不难，难的不会，基本是由两部分组成，Linux的expact命令，以及Shuttle。  </p>
+<h2 id="Shuttle"><a href="#Shuttle" class="headerlink" title="Shuttle"></a>Shuttle</h2><p>Shuttle 是一款图形界面化的cmd命令工具。<br>下载完后点击图标，就可以在顶部的导航栏找到他了，至于怎么用，点击这个按钮:<br><img src="/2018/03/15/为Mac打造一个顺手的链接Linux工具/pic4.png"><br>会打开一个文档，json格式的，也就是软件的配置文件(缩进好像有点问题)：  </p>
+<pre><code class="json">{
+    <span class="attr">"_comments"</span>: [],
+    <span class="attr">"editor"</span>: <span class="string">"default"</span>,
+    <span class="attr">"launch_at_login"</span>: <span class="literal">false</span>,
+    <span class="attr">"terminal"</span>: <span class="string">"Terminal.app"</span>,
+    <span class="attr">"iTerm_version"</span>: <span class="string">"nightly"</span>,
+    <span class="attr">"default_theme"</span>: <span class="string">"Ocean"</span>,
+    <span class="attr">"open_in"</span>: <span class="string">"new"</span>,
+    <span class="attr">"show_ssh_config_hosts"</span>: <span class="literal">false</span>,
+    <span class="attr">"ssh_config_ignore_hosts"</span>: [],
+    <span class="attr">"ssh_config_ignore_keywords"</span>: [],
+    <span class="attr">"hosts"</span>: [
+        {
+            <span class="attr">"linux Servers"</span>: [
+                {
+                    <span class="attr">"QHY’s linux Servers"</span>: [
+                        {
+                            <span class="attr">"cmd"</span>: <span class="string">".//linux自动脚本/login.sh"</span>,
+                            <span class="attr">"inTerminal"</span>: <span class="string">"tab"</span>,
+                            <span class="attr">"name"</span>: <span class="string">"login"</span>,
+                            <span class="attr">"theme"</span>: <span class="string">"Ocean"</span>,
+                            <span class="attr">"title"</span>: <span class="string">"ShouWangZhe"</span>
+                        }
+                    ]
+                },
+                {
+                    <span class="attr">"博客运维脚本"</span>: [
+                        {
+                            <span class="attr">"cmd"</span>: <span class="string">".//linux自动脚本/starHexoBlog.sh"</span>,
+                            <span class="attr">"inTerminal"</span>: <span class="string">"tab"</span>,
+                            <span class="attr">"name"</span>: <span class="string">"长时启动博客服务器"</span>,
+                            <span class="attr">"theme"</span>: <span class="string">"Ocean"</span>,
+                            <span class="attr">"title"</span>: <span class="string">"ShouWangZhe"</span>
+                        },
+                        {
+                            <span class="attr">"cmd"</span>: <span class="string">".//linux自动脚本/starHexoBlog-RealTime.sh"</span>,
+                            <span class="attr">"inTerminal"</span>: <span class="string">"tab"</span>,
+                            <span class="attr">"name"</span>: <span class="string">"实时启动博客服务器"</span>,
+                            <span class="attr">"theme"</span>: <span class="string">"Ocean"</span>,
+                            <span class="attr">"title"</span>: <span class="string">"ShouWangZhe"</span>
+                        },
+                        {
+                            <span class="attr">"cmd"</span>: <span class="string">".//linux自动脚本/endHexoBlog.sh"</span>,
+                            <span class="attr">"inTerminal"</span>: <span class="string">"tab"</span>,
+                            <span class="attr">"name"</span>: <span class="string">"关闭博客服务器"</span>,
+                            <span class="attr">"theme"</span>: <span class="string">"Ocean"</span>,
+                            <span class="attr">"title"</span>: <span class="string">"ShouWangZhe"</span>
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            <span class="attr">"Android adb Servers"</span>: [
+                {
+                    <span class="attr">"QHY’s Home adb Servers"</span>: [
+                        {
+                            <span class="attr">"cmd"</span>: <span class="string">"adb connect 192.168.10.211:5555\r exit\r"</span>,
+                            <span class="attr">"inTerminal"</span>: <span class="string">"tab"</span>,
+                            <span class="attr">"name"</span>: <span class="string">"connect home onplus 2 test"</span>,
+                            <span class="attr">"theme"</span>: <span class="string">"Homebrew"</span>,
+                            <span class="attr">"title"</span>: <span class="string">"ShouWangZhe 1+"</span>
+                        },
+                        {
+                            <span class="attr">"cmd"</span>: <span class="string">"adb disconnect 192.168.10.211:5555\r exit\r"</span>,
+                            <span class="attr">"inTerminal"</span>: <span class="string">"tab"</span>,
+                            <span class="attr">"name"</span>: <span class="string">"disconnect home onplus 2"</span>,
+                            <span class="attr">"theme"</span>: <span class="string">"Homebrew"</span>,
+                            <span class="attr">"title"</span>: <span class="string">"ShouWangZhe 1+"</span>
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+</code></pre>
+<p>上面的是我的配置，解析一下这个json：<br><img src="/2018/03/15/为Mac打造一个顺手的链接Linux工具/pic5.png"><br>也就是对应我的效果那节的那个图，配置文件中的host节点是我们要用到的节点，有点编程基础的也知道这个节点是一个JsonArray。<br>下面可以加很多节点，每一个节点都是一级菜单，大体目录就这么多，每个节点的配置如下：  </p>
+<pre><code class="json">{
+  <span class="attr">"cmd"</span>: <span class="string">".//linux自动脚本/login.sh"</span>,
+  <span class="attr">"inTerminal"</span>: <span class="string">"tab"</span>,
+  <span class="attr">"name"</span>: <span class="string">"login"</span>,
+  <span class="attr">"theme"</span>: <span class="string">"Ocean"</span>,
+  <span class="attr">"title"</span>: <span class="string">"ShouWangZhe"</span>
+}
+</code></pre>
+<ul>
+<li>cmd：你要在打开的控制台里面输入什么命令。</li>
+<li>name：标题。</li>
+<li>theme：Mac控制台主题，我选的是Ocean。</li>
+<li>title：Mac控制台标题。  </li>
+</ul>
+<p>我是一个android工程师，所以偶尔也需要wifi ADB操作，同样可以写在配置里面：  </p>
+<pre><code class="json">{
+  <span class="attr">"cmd"</span>: <span class="string">"adb connect 192.168.10.211:5555\r exit\r"</span>,
+  <span class="attr">"inTerminal"</span>: <span class="string">"tab"</span>,
+  <span class="attr">"name"</span>: <span class="string">"connect home onplus 2 test"</span>,
+  <span class="attr">"theme"</span>: <span class="string">"Homebrew"</span>,
+  <span class="attr">"title"</span>: <span class="string">"ShouWangZhe 1+"</span>
+}
+</code></pre>
+<p>效果就是这样的：<br><img src="/2018/03/15/为Mac打造一个顺手的链接Linux工具/pic7.png"><br>以上大体就是Shuttle的应用，它就是读取cmd节点的命令，然后执行。  </p>
+<h2 id="expact"><a href="#expact" class="headerlink" title="expact"></a>expact</h2><p>很明显，上面的命令我输入了执行脚本的命令。  </p>
+<pre><code class="bash">.//linux自动脚本/login.sh
+</code></pre>
+<p>我在Mac目录下面建立了“linux自动脚本”这个文件夹，专门用来存放我的脚本。<br><img src="/2018/03/15/为Mac打造一个顺手的链接Linux工具/pic6.png"><br>例如想要登陆远程服务器的脚本(login.sh)内容如下：  </p>
+<pre><code class="bash"><span class="comment">#!/usr/bin/expect -f</span>
+<span class="built_in">set</span> psw 123456
+
+spawn ssh  -p 22 root@www.shouwangzhe.space
+expect {
+        <span class="string">"(yes/no)"</span> {send <span class="string">"yes\r"</span>; exp_continue}
+        <span class="string">"password:"</span> {send <span class="string">"<span class="variable">$psw</span>\r"</span>}
+}
+
+expect eof
+
+interact
+</code></pre>
+<p>语法是expect，自动化运维脚本，他的原理是在当前控制台开设一个新的控制台，然后监测命令行是否有你需要的命令，有的话就send一行命令+‘\r’，执行。  </p>
+<p>用expact还可以完成很多复杂的操作，例如推送博客到GitHub上去：  </p>
+<pre><code class="bash"><span class="comment">#!/usr/bin/expect -f</span>
+<span class="built_in">set</span> gitPsw 123456
+<span class="built_in">set</span> userPsw 123456
+
+spawn ssh root@localhost
+expect {
+        <span class="string">"(yes/no)"</span> {send <span class="string">"yes\r"</span>; exp_continue}
+        <span class="string">"password:"</span> {send <span class="string">"<span class="variable">$userPsw</span>\r"</span>}
+}
+expect <span class="string">"root@*"</span>  {send <span class="string">"cd /home/root/hexo\r"</span>}
+expect <span class="string">"root@*"</span>  {send <span class="string">"hexo g\r"</span>}
+expect <span class="string">"root@*"</span>  {send <span class="string">"hexo d\r"</span>}
+expect <span class="string">"*passphrase*"</span>  {send <span class="string">"<span class="variable">$gitPsw</span>\r"</span>}
+
+expect eof
+
+<span class="built_in">exit</span> 0
+</code></pre>
+<p>效果就不展示了，就是省去了上传博客的过程，一步到位，有了这个技巧，就可以做很多方便的功能，也算是做到了优雅的开发了。  </p>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>弄这套花了我一天的时间，摸索起来还是很费劲的，好在效果很好。<br>最后，京紫镇楼。<br><img src="/2018/03/15/为Mac打造一个顺手的链接Linux工具/pic8.jpg"></p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src>
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        <li title="0" data-url="http://www.qingheyang.studio:8000/bgm1.mp3"></li>
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link" data-ae="false" data-ci="3d9dffcedc9de76a15b0" data-cs="7be14cc9bc5a683e6a47ec31b1f037d12152c562" data-r="QHY_Blog_Issue" data-o="qingheyang" data-a="qingheyang" data-d="false">查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#环境"><span class="toc-number">2.</span> <span class="toc-text">环境</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#效果"><span class="toc-number">3.</span> <span class="toc-text">效果</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#实现"><span class="toc-number">4.</span> <span class="toc-text">实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Shuttle"><span class="toc-number">4.1.</span> <span class="toc-text">Shuttle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#expact"><span class="toc-number">4.2.</span> <span class="toc-text">expact</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#最后"><span class="toc-number">5.</span> <span class="toc-text">最后</span></a></li></ol>
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>

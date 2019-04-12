@@ -1,0 +1,559 @@
+
+<!DOCTYPE html>
+<html lang="Chinese" class="loading">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>RxJava2关于Junit的错误解决方法 - 清河阳</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Android,"> 
+    <meta name="description" content="三流执行工程师,背景这段时间做的项目用到了RxJava2，整体框架为MVP。因为我公司的电脑差的厉害，没有硬件加速，项目环境起步就是5.0，所以只能用真机调试，公司的测试机比电脑还差，慢的要死，种种问题的压迫。我一,"> 
+    <meta name="author" content="QingHeYang"> 
+    <link rel="alternative" href="atom.xml" title="清河阳" type="application/atom+xml"> 
+    <link rel="icon" href="/img/ocean_q_small.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+</head>
+</html>
+<body class="loading">
+    <span id="config-title" style="display:none">清河阳</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://www.qingheyang.studio:1314"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">RxJava2关于Junit的错误解决方法</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class="main">
+        <h1 class="title">RxJava2关于Junit的错误解决方法</h1>
+        <div class="stuff">
+            <span>二月 07, 2018</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Android/">Android</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>这段时间做的项目用到了RxJava2，整体框架为MVP。<br>因为我公司的电脑差的厉害，没有硬件加速，项目环境起步就是5.0，所以只能用真机调试，公司的测试机比电脑还差，慢的要死，种种问题的压迫。<br>我一拍脑门，决定Junit来进行测试我的P层逻辑，反正数据这种东西，测试通的过,到真机上面基本也就是刷新视图界面的问题了。  </p>
+<hr>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>在整体coding的过程中还是遇到了部分棘手的问题，因为以往很少用Junit，应该说从来没有用过，所以踩了很多坑，我遇到的问题是在单元测试的过程中，无法用Rxjava2进行测试，而我MVP的主要核心就是Rxjava2，本文也主要是解决这个问题。<br><a id="more"></a>  </p>
+<hr>
+<h1 id="Rxjava2-amp-Junit-引入"><a href="#Rxjava2-amp-Junit-引入" class="headerlink" title="Rxjava2 &amp; Junit 引入"></a>Rxjava2 &amp; Junit 引入</h1><h2 id="依赖："><a href="#依赖：" class="headerlink" title="依赖："></a>依赖：</h2><pre><code class="Gradle"><span class="keyword">dependencies</span> {
+    ...
+
+    testImplementation <span class="string">'junit:junit:4.12'</span>  
+
+    implementation <span class="string">'io.reactivex.rxjava2:rxjava:2.0.4'</span>  
+
+    implementation <span class="string">'io.reactivex.rxjava2:rxandroid:2.0.1'</span>  
+
+    implementation <span class="string">'com.google.code.gson:gson:2.8.2'</span>  
+
+}
+</code></pre>
+<p>注：因为我用的gradle版本比较高，所以‘compile’ 被 ‘implementation’取代了。junit应该是自带的，所以也可以不用引入。  </p>
+<h2 id="Rxjava2-amp-Presenter"><a href="#Rxjava2-amp-Presenter" class="headerlink" title="Rxjava2 &amp; Presenter"></a>Rxjava2 &amp; Presenter</h2><p>一个Rxjava的例子,因为我的项目是以MVP为基础的，所以这个demo也是以MVP为基础的，没有MVP基础的可以先去学一下，项目是简化了很多版的MVP框架。<br>我先将我整个Demo给贴上，在叙述具体的问题解决方式。  </p>
+<h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><img src="/2018/02/07/RxJava2关于Junit的错误解决方法/pic1.png">  
+<h3 id="Presenter"><a href="#Presenter" class="headerlink" title="Presenter"></a>Presenter</h3><p>在Presenter层编写获取信息的代码，处理数据层信息，将结果反馈给视图层，以下是我Presenter层的代码:  </p>
+<pre><code class="Java"><span class="keyword">package</span> com.qingheyang.testjr;
+
+<span class="comment">//省略包</span>
+<span class="keyword">import</span> ...;
+<span class="comment">/**</span>
+<span class="comment"> * project: TestJR</span>
+<span class="comment"> * package: com.qingheyang.testjr</span>
+<span class="comment"> * creater: qingheyang</span>
+<span class="comment"> * date: 2018/2/17</span>
+<span class="comment"> * describe:</span>
+<span class="comment"> */</span>
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainPresenter</span> </span>{
+    MainActivity activity;
+
+    <span class="function"><span class="keyword">public</span> <span class="title">MainPresenter</span><span class="params">(MainActivity activity)</span> </span>{
+        <span class="keyword">this</span>.activity = activity;
+    }
+
+    <span class="comment">/**</span>
+<span class="comment">     * 获取user信息</span>
+<span class="comment">     */</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getUser</span><span class="params">(<span class="keyword">final</span> String path)</span> </span>{
+        Observable.create(<span class="keyword">new</span> ObservableOnSubscribe&lt;String&gt;() {
+            <span class="meta">@Override</span>
+            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">subscribe</span><span class="params">(ObservableEmitter&lt;String&gt; e)</span> <span class="keyword">throws</span> Exception </span>{
+                String json = HttpUtils.httpGet(path);<span class="comment">//请求网络</span>
+                <span class="keyword">if</span> (json!=<span class="keyword">null</span>) {<span class="comment">//判断服务器返回数据是否为空</span>
+                    e.onNext(json);
+                }<span class="keyword">else</span> {
+                    e.onError(<span class="keyword">new</span> Exception(<span class="string">"获取user失败"</span>));
+                }
+            }
+        }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(<span class="keyword">new</span> Observer&lt;String&gt;() {
+                    <span class="meta">@Override</span>
+                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSubscribe</span><span class="params">(Disposable d)</span> </span>{
+
+                    }
+
+                    <span class="meta">@Override</span>
+                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(String s)</span> </span>{
+                        System.out.println(s);<span class="comment">//因为junit输出日志不能用log，所以改用sys。</span>
+                        Gson gson = <span class="keyword">new</span> Gson();
+                        User user = gson.fromJson(s, User.class);
+                        <span class="comment">//处理数据成功的话，交给activity的回调</span>
+                        activity.getDateSuccess(user);
+                    }
+
+                    <span class="meta">@Override</span>
+                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>{
+                        <span class="comment">//失败交给activity给用户返回失败信息</span>
+                        activity.getDateFailed(<span class="number">0x001</span>);
+                    }
+
+                    <span class="meta">@Override</span>
+                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onComplete</span><span class="params">()</span> </span>{
+
+                    }
+                });
+    }
+}
+</code></pre>
+<h3 id="MainActivity"><a href="#MainActivity" class="headerlink" title="MainActivity"></a>MainActivity</h3><pre><code class="Java"><span class="keyword">package</span> com.qingheyang.testjr;
+
+<span class="comment">//省略包</span>
+<span class="keyword">import</span> ...;
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>{
+    <span class="keyword">private</span> Button button;
+    <span class="keyword">private</span> MainPresenter presenter;
+
+    <span class="meta">@Override</span>
+    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>{
+        <span class="keyword">super</span>.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        initUi();
+    }
+
+    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initUi</span><span class="params">()</span> </span>{
+        button = findViewById(R.id.main_btn);
+        button.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() {
+            <span class="meta">@Override</span>
+            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>{
+                presenter.getUser(HttpUtils.URL);<span class="comment">//地址要自己更换</span>
+            }
+        });
+    }
+
+    <span class="comment">/**</span>
+<span class="comment">     * 成功的回调</span>
+<span class="comment">     * <span class="doctag">@param</span> user</span>
+<span class="comment">     */</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getDateSuccess</span><span class="params">(User user)</span></span>{
+        <span class="comment">//doSomethings...</span>
+    }
+
+    <span class="comment">/**</span>
+<span class="comment">     * 失败的回调</span>
+<span class="comment">     * <span class="doctag">@param</span> code</span>
+<span class="comment">     */</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getDateFailed</span><span class="params">(<span class="keyword">int</span> code)</span></span>{
+        <span class="keyword">switch</span> (code){
+            <span class="keyword">case</span> <span class="number">0x001</span>:
+                Toast.makeText(<span class="keyword">this</span>, <span class="string">"获取信息失败"</span>, Toast.LENGTH_SHORT).show();
+                <span class="keyword">break</span>;
+            <span class="keyword">case</span> <span class="number">0x002</span>:
+                <span class="keyword">break</span>;
+        }
+    }
+}
+</code></pre>
+<h3 id="HttpUtils"><a href="#HttpUtils" class="headerlink" title="HttpUtils"></a>HttpUtils</h3><p>工具类，因为是demo，获取方式为GET请求：  </p>
+<pre><code class="Java"><span class="keyword">package</span> com.qingheyang.testjr;
+
+<span class="comment">//省略包</span>
+<span class="keyword">import</span> ...;
+
+<span class="comment">/**</span>
+<span class="comment"> * project: TestJR</span>
+<span class="comment"> * package: com.qingheyang.testjr</span>
+<span class="comment"> * creater: qingheyang</span>
+<span class="comment"> * date: 2018/2/17</span>
+<span class="comment"> * describe:http get请求</span>
+<span class="comment"> */</span>
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HttpUtils</span> </span>{
+
+    <span class="comment">//此处更换ip地址</span>
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String URL = <span class="string">"http://192.168.1.1:8080"</span>;
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">httpGet</span><span class="params">(String path)</span> </span>{
+        URL url = <span class="keyword">null</span>;
+        HttpURLConnection conn = <span class="keyword">null</span>;
+        InputStream is = <span class="keyword">null</span>;
+        ByteArrayOutputStream baos = <span class="keyword">null</span>;
+        <span class="keyword">try</span> {
+            url = <span class="keyword">new</span> URL(path);
+        } <span class="keyword">catch</span> (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        <span class="keyword">if</span> (url != <span class="keyword">null</span>) {
+            <span class="keyword">try</span> {
+                conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod(<span class="string">"GET"</span>);
+                conn.setReadTimeout(<span class="number">8000</span>);
+                conn.setConnectTimeout(<span class="number">8000</span>);
+                conn.connect();
+                <span class="keyword">int</span> responseCode = conn.getResponseCode();
+                <span class="keyword">if</span> (responseCode == HttpURLConnection.HTTP_OK) {
+                    is = conn.getInputStream();
+                    baos = <span class="keyword">new</span> ByteArrayOutputStream();
+                    <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];
+                    <span class="keyword">int</span> len = <span class="number">0</span>;
+                    <span class="keyword">while</span> (-<span class="number">1</span> != (len = is.read(buffer))) {
+                        baos.write(buffer, <span class="number">0</span>, len);
+                        baos.flush();
+                    }
+                    is.close();
+                    baos.close();
+                    <span class="keyword">return</span> baos.toString(<span class="string">"utf-8"</span>);
+                }
+            } <span class="keyword">catch</span> (IOException e) {
+                e.printStackTrace();
+            } <span class="keyword">finally</span> {
+                <span class="keyword">if</span> (is != <span class="keyword">null</span>) {
+                    <span class="keyword">try</span> {
+                        is.close();
+                    } <span class="keyword">catch</span> (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                <span class="keyword">if</span> (baos != <span class="keyword">null</span>) {
+                    <span class="keyword">try</span> {
+                        baos.close();
+                    } <span class="keyword">catch</span> (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                conn.disconnect();
+            }
+        }
+        <span class="keyword">return</span> <span class="keyword">null</span>;
+    }
+
+}
+</code></pre>
+<h3 id="User"><a href="#User" class="headerlink" title="User"></a>User</h3><p>javaBean:  </p>
+<pre><code class="Java"><span class="keyword">package</span> com.qingheyang.testjr;
+
+<span class="keyword">import</span> java.util.List;
+
+<span class="comment">/**</span>
+<span class="comment"> * project: TestJR</span>
+<span class="comment"> * package: com.qingheyang.testjr</span>
+<span class="comment"> * creater: qingheyang</span>
+<span class="comment"> * date: 2018/2/17</span>
+<span class="comment"> * describe: javaBean</span>
+<span class="comment"> */</span>
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>{
+
+    <span class="keyword">private</span> List&lt;MessageInfoBean&gt; messageInfo;
+
+    <span class="function"><span class="keyword">public</span> List&lt;MessageInfoBean&gt; <span class="title">getMessageInfo</span><span class="params">()</span> </span>{
+        <span class="keyword">return</span> messageInfo;
+    }
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMessageInfo</span><span class="params">(List&lt;MessageInfoBean&gt; messageInfo)</span> </span>{
+        <span class="keyword">this</span>.messageInfo = messageInfo;
+    }
+
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">MessageInfoBean</span> </span>{
+
+        <span class="keyword">private</span> String msg1;
+        <span class="keyword">private</span> String author;
+        <span class="keyword">private</span> String view;
+
+        <span class="function"><span class="keyword">public</span> String <span class="title">getMsg1</span><span class="params">()</span> </span>{
+            <span class="keyword">return</span> msg1;
+        }
+
+        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMsg1</span><span class="params">(String msg1)</span> </span>{
+            <span class="keyword">this</span>.msg1 = msg1;
+        }
+
+        <span class="function"><span class="keyword">public</span> String <span class="title">getAuthor</span><span class="params">()</span> </span>{
+            <span class="keyword">return</span> author;
+        }
+
+        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAuthor</span><span class="params">(String author)</span> </span>{
+            <span class="keyword">this</span>.author = author;
+        }
+
+        <span class="function"><span class="keyword">public</span> String <span class="title">getView</span><span class="params">()</span> </span>{
+            <span class="keyword">return</span> view;
+        }
+
+        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setView</span><span class="params">(String view)</span> </span>{
+            <span class="keyword">this</span>.view = view;
+        }
+    }
+}
+</code></pre>
+<h2 id="Junit"><a href="#Junit" class="headerlink" title="Junit"></a>Junit</h2><ul>
+<li>如果你已经依赖了Junit了，请继续往下看，没有的话，我上面已经附上了依赖。</li>
+<li>新建一个Presenter的单元测试类。<br>在要测试的方法上面点击右键，选择goto，选择最后一个test。  <img src="/2018/02/07/RxJava2关于Junit的错误解决方法/pic2.png">  
+点击后出现Create New Test，点击。  <img src="/2018/02/07/RxJava2关于Junit的错误解决方法/pic3.png">  
+出现Create Test的对话框，勾选setUp，tearDown，以及你想测试的方法，getUser，点击OK。  <img src="/2018/02/07/RxJava2关于Junit的错误解决方法/pic4.png">  
+左边的列表中会出现刚才建立的MainPresenter。  <img src="/2018/02/07/RxJava2关于Junit的错误解决方法/pic5.png">  </li>
+<li>test代码  </li>
+</ul>
+<pre><code class="Java"><span class="keyword">package</span> com.qingheyang.testjr;
+
+<span class="keyword">import</span> org.junit.After;
+<span class="keyword">import</span> org.junit.Before;
+<span class="keyword">import</span> org.junit.Test;
+
+<span class="keyword">import</span> <span class="keyword">static</span> org.junit.Assert.*;
+
+<span class="comment">/**</span>
+<span class="comment"> * project: TestJR</span>
+<span class="comment"> * package: com.qingheyang.testjr</span>
+<span class="comment"> * creater: qingheyang</span>
+<span class="comment"> * date: 2018/2/18</span>
+<span class="comment"> * describe:MainPresenter的单元测试</span>
+<span class="comment"> */</span>
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainPresenterTest</span> </span>{
+    <span class="keyword">private</span> MainPresenter presenter;
+    <span class="meta">@Before</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>{
+        presenter = <span class="keyword">new</span> MainPresenter();
+    }
+
+    <span class="meta">@After</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">tearDown</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>{
+        presenter = <span class="keyword">null</span>;
+    }
+
+    <span class="meta">@Test</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getUser</span><span class="params">()</span> </span>{
+        presenter.getUser(HttpUtils.URL);
+    }
+}
+</code></pre>
+<p>以上就是rxjava+MVP的全部代码。<br>当然这样肯定会出错的。<br>顺便说一下，服务器搭建是Linux平台上面随便启动的一个tomcat服务器。  </p>
+<hr>
+<h1 id="Run-amp-Error"><a href="#Run-amp-Error" class="headerlink" title="Run &amp; Error"></a>Run &amp; Error</h1><p>运行一下，单元测试的运行是在方法上面运行：<br>可以点击左边的运行按钮，也可以对方法点击右键。<br><img src="/2018/02/07/RxJava2关于Junit的错误解决方法/pic7.png"><br>运行过后会发现报错，原因一是因为部分Android的API，Junit不支持，没法做到完美支持，会报错。<br>解决方法有两个。  </p>
+<ul>
+<li>依赖mock。</li>
+<li>注释掉关于Android的代码。（我选择注释）<br>也就是Rxjava中观察者中的onNext方法中关于Android的部分代码要注释。  <pre><code class="Java"><span class="meta">@Override</span>
+                  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(String s)</span> </span>{
+                      System.out.println(s);<span class="comment">//因为junit输出日志不能用log，所以改用sys。</span>
+                      <span class="comment">//Gson gson = new Gson();</span>
+                     <span class="comment">// User user = gson.fromJson(s, User.class);</span>
+                      <span class="comment">//处理数据成功的话，交给activity的回调</span>
+                      <span class="comment">//activity.getDateSuccess(user);</span>
+                  }
+</code></pre>
+</li>
+</ul>
+<p>再次运行。<br><img src="/2018/02/07/RxJava2关于Junit的错误解决方法/pic8.png"><br>再次发现错误，也是我遇到的核心问题：Rxjava2在Junit中的线程问题，以及如何用API来解决它。  </p>
+<hr>
+<h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><p>这个问题粗略的说一下其实也很简单，就是Rxjava2的子线程与主线程在电脑上面运行无法同步的问题。<br>解决方法就是将子线程与安卓UI线程调整至同一线程即可。<br>也搜索过很多网上的解决方法，基本都是Rxjava1的解决方法，Rxjava2的又一般是kotlin，直接上代码吧。  </p>
+<pre><code class="Java"><span class="keyword">package</span> com.qingheyang.testjr;
+
+<span class="comment">//省略包</span>
+<span class="keyword">import</span> ...;
+
+<span class="comment">/**</span>
+<span class="comment"> * 项目名称:</span>
+<span class="comment"> * 类创建者:QHY.</span>
+<span class="comment"> * 时间:2017/12/21</span>
+<span class="comment"> * 类说明:</span>
+<span class="comment"> */</span>
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RxTools</span> </span>{
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">asyncToSync</span><span class="params">()</span> </span>{
+
+        <span class="comment">/**</span>
+<span class="comment">         * 因为RxJava2已经没有了immediate线程，所以要自己做一个线</span>
+<span class="comment">         */</span>
+
+        <span class="keyword">final</span> Scheduler immediate = <span class="keyword">new</span> Scheduler() {
+            <span class="meta">@Override</span>
+            <span class="function"><span class="keyword">public</span> Disposable <span class="title">scheduleDirect</span><span class="params">(@NonNull Runnable run, <span class="keyword">long</span> delay, @NonNull TimeUnit unit)</span> </span>{
+                <span class="keyword">return</span> <span class="keyword">super</span>.scheduleDirect(run, <span class="number">0</span>, unit);
+            }
+
+            <span class="meta">@Override</span>
+            <span class="function"><span class="keyword">public</span> Worker <span class="title">createWorker</span><span class="params">()</span> </span>{
+                <span class="keyword">return</span> <span class="keyword">new</span> ExecutorScheduler.ExecutorWorker(<span class="keyword">new</span> ScheduledThreadPoolExecutor(<span class="number">1</span>) {
+                    <span class="meta">@Override</span>
+                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(@NonNull Runnable runnable)</span> </span>{
+                        runnable.run();
+                    }
+                });
+            }
+        };
+
+        <span class="comment">/**</span>
+<span class="comment">         * 将自己写的线程转换成为一个调度线程</span>
+<span class="comment">         */</span>
+        Function&lt;Callable&lt;Scheduler&gt;, Scheduler&gt; schedulerFunc = <span class="keyword">new</span> Function&lt;Callable&lt;Scheduler&gt;, Scheduler&gt;() {
+            <span class="meta">@Override</span>
+            <span class="function"><span class="keyword">public</span> Scheduler <span class="title">apply</span><span class="params">(Callable&lt;Scheduler&gt; schedulerCallable)</span> <span class="keyword">throws</span> Exception </span>{
+                <span class="keyword">return</span> immediate;
+            }
+
+
+        };
+
+        <span class="comment">/**</span>
+<span class="comment">         * 将单元测试的所有调度线程都统一一个线程</span>
+<span class="comment">         */</span>
+        RxJavaPlugins.reset();
+        RxJavaPlugins.setInitIoSchedulerHandler(schedulerFunc);
+        RxJavaPlugins.setInitComputationSchedulerHandler(schedulerFunc);
+        RxJavaPlugins.setInitNewThreadSchedulerHandler(schedulerFunc);
+        RxAndroidPlugins.reset();
+        RxAndroidPlugins.setInitMainThreadSchedulerHandler(schedulerFunc);
+    }
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">resetPlugins</span><span class="params">()</span></span>{
+        RxJavaPlugins.reset();
+        RxAndroidPlugins.reset();
+    }
+
+}
+</code></pre>
+<p>使用方法很简单，如下：  </p>
+<pre><code class="Java"><span class="meta">@Before</span>
+   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>{
+       RxTools.asyncToSync();
+       presenter = <span class="keyword">new</span> MainPresenter();
+   }
+
+   <span class="meta">@After</span>
+   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">tearDown</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>{
+       RxTools.resetPlugins();
+       presenter = <span class="keyword">null</span>;
+   }
+</code></pre>
+<p>在MainPresenterTest中，setUp以及tearDown中分别调整下代码即可。<br>结果如下:<br><img src="/2018/02/07/RxJava2关于Junit的错误解决方法/pic9.png">  </p>
+<hr>
+<p>这个项目也可以在我的github中找到，如果有帮到你，欢迎给一个star。<br>链接可以在下方GitHub图标获取。<br>以上</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src>
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        <li title="0" data-url="http://www.qingheyang.studio:8000/bgm1.mp3"></li>
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link" data-ae="false" data-ci="3d9dffcedc9de76a15b0" data-cs="7be14cc9bc5a683e6a47ec31b1f037d12152c562" data-r="QHY_Blog_Issue" data-o="qingheyang" data-a="qingheyang" data-d="false">查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#问题"><span class="toc-number">2.</span> <span class="toc-text">问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Rxjava2-amp-Junit-引入"><span class="toc-number">3.</span> <span class="toc-text">Rxjava2 &amp; Junit 引入</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#依赖："><span class="toc-number">3.1.</span> <span class="toc-text">依赖：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rxjava2-amp-Presenter"><span class="toc-number">3.2.</span> <span class="toc-text">Rxjava2 &amp; Presenter</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#目录结构"><span class="toc-number">3.2.1.</span> <span class="toc-text">目录结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Presenter"><span class="toc-number">3.2.2.</span> <span class="toc-text">Presenter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MainActivity"><span class="toc-number">3.2.3.</span> <span class="toc-text">MainActivity</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HttpUtils"><span class="toc-number">3.2.4.</span> <span class="toc-text">HttpUtils</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#User"><span class="toc-number">3.2.5.</span> <span class="toc-text">User</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Junit"><span class="toc-number">3.3.</span> <span class="toc-text">Junit</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Run-amp-Error"><span class="toc-number">4.</span> <span class="toc-text">Run &amp; Error</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#解决"><span class="toc-number">5.</span> <span class="toc-text">解决</span></a></li></ol>
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>
