@@ -57,7 +57,7 @@
     <div class="main">
         <h1 class="title">Hexo博客那点事，一些技术上的延伸</h1>
         <div class="stuff">
-            <span>三月 12, 2019</span>
+            <span>二月 24, 2019</span>
             
   <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/hexo/">hexo</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/linux/">linux</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/nginx/">nginx</a></li></ul>
 
@@ -96,7 +96,7 @@
 </ul>
 <p>其实安装的话，看官网教程就可以了，如果你会一些linux知识，当然你要会前端那就更NB了。<br>先安装npm、nodeJs、以及hexo。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install nodejs  </span><br><span class="line">$ npm install -g hexo-cli</span><br></pre></td></tr></table></figure></p>
 <p>好像是上面这样，网上教程很多的，因为太久远了，有些忘了，不过这些也不是重点。<br>插件大概有一些。<br>hexo-admin，必装，因为这个编辑真的很舒服，<a href="https://github.com/jaredly/hexo-admin" target="_blank" rel="noopener">教程点这里</a>。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install --save hexo-admin</span><br></pre></td></tr></table></figure></p>
-<p>效果如下：<br><img src="http://www.qingheyang.studio:8000/blog_image/2019-03-12/pic5.png" alt>  </p>
+<p>效果如下：  </p>
 <p><img src="http://www.qingheyang.studio:8000/blog_image/2019-03-12/pic6.png" alt><br>hexo-deployer-git,必装，hexo部署到github.io的插件，<a href="https://github.com/hexojs/hexo-deployer-git" target="_blank" rel="noopener">教程点这里</a>。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></p>
 <p>暂时想这么多，后续再补吧。  </p>
 <hr>
@@ -134,7 +134,7 @@
 <p>然后输入 Ctrl+o ，写入文件即可，按Ctrl + x，退出nano编辑器，然后重启计划任务：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ service cron restart</span><br></pre></td></tr></table></figure></p>
 <p>可以输入命令查看当前用户的计划任务：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ crontab -l</span><br></pre></td></tr></table></figure></p>
 <p><img src="http://www.qingheyang.studio:8000/blog_image/2019-03-12/pic9.png" alt>  </p>
-<h3 id="云备份"><a href="#云备份" class="headerlink" title="云备份"></a>云备份</h3><p>定期打出来的压缩包是可以上传到某一个地方去的，有很多种选择，因为我域名是在阿里云买的，所以我就选择了阿里云的OSS存储器，价格低，很低很低，也方便管理，他有sdk给提供。<br>我做了个Java工程，打了个jar包，就当做是脚本来运行了。  </p>
+<h3 id="云备份"><a href="#云备份" class="headerlink" title="云备份"></a>云备份</h3><p>（2019/04/16补）<br>定期打出来的压缩包是可以上传到某一个地方去的，有很多种选择，因为我域名是在阿里云买的，所以我就选择了阿里云的OSS存储器，价格低，很低很低，也方便管理，他有sdk给提供。<br>我做了个Java工程，打了个jar包，就当做是脚本来运行了。  </p>
 <blockquote>
 <p>阿里云OSS地址：<a href="https://www.aliyun.com/product/oss?spm=5176.8142029.selected.3.fbcf6d3eyuSIHf" target="_blank" rel="noopener">https://www.aliyun.com/product/oss?spm=5176.8142029.selected.3.fbcf6d3eyuSIHf</a>  </p>
 </blockquote>
