@@ -1,67 +1,71 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="Chinese" class="loading">
 <head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="utf-8">
-  
-  
-    <meta name="keywords" content="android">
-  
-  
-    <meta name="description" content="三流执行工程师">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>
-    深度集成使用高德地图功能--猎鹰（1）   记录轨迹篇 |
-    
-    清河阳</title>
-  
-    <link rel="shortcut icon" href="/favicon.ico">
-  
-  <link rel="stylesheet" href="/css/style.css">
-  
-    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
-  
-  <script src="/js/pace.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>深度集成使用高德地图功能--猎鹰（1）   记录轨迹篇 - 清河阳</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="Android QingHeYang 清河阳,"> 
+    <meta name="description" content="三流执行工程师,本文适用对象：已继承了猎鹰功能的朋友及使用期间遇到困难的朋友。
+背景前段日子公司要求上线一个功能，具有导航，记录轨迹，查看历史行程等功能的一个模块，我用过百度地图，但是公司继承的是高德地图，索性直接,"> 
+    <meta name="author" content="QingHeYang"> 
+    <link rel="alternative" href="atom.xml" title="清河阳" type="application/atom+xml"> 
+    <link rel="icon" href="/img/ocean_q_small.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
 </head>
 </html>
-<body>
-<main class="content">
-  <section class="outer">
-  <article id="post-深度集成使用高德地图功能-猎鹰" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+<body class="loading">
+    <span id="config-title" style="display:none">清河阳</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;" data-url="http://blog.qingheyang.studio"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">深度集成使用高德地图功能--猎鹰（1）   记录轨迹篇</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
 
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      深度集成使用高德地图功能--猎鹰（1）   记录轨迹篇
-    </h1>
-  
+    <div class="section">
+        <div class="article">
+    <div class="main">
+        <h1 class="title">深度集成使用高德地图功能--猎鹰（1）   记录轨迹篇</h1>
+        <div class="stuff">
+            <span>一月 06, 2020</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/高德/">高德</a></li></ul>
 
-      </header>
-    
 
-    
-      <div class="article-meta">
-        <a href="/archives/1ca89d06.html" class="article-date">
-  <time datetime="2020-01-06T13:29:00.000Z" itemprop="datePublished">2020-01-06</time>
-</a>
-        
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-
-      </div>
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-
-      
-
-      
-        <p>本文适用对象：已继承了猎鹰功能的朋友及使用期间遇到困难的朋友。</p>
+        </div>
+        <div class="content markdown">
+            <p>本文适用对象：已继承了猎鹰功能的朋友及使用期间遇到困难的朋友。</p>
 <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>前段日子公司要求上线一个功能，具有导航，记录轨迹，查看历史行程等功能的一个模块，我用过百度地图，但是公司继承的是高德地图，索性直接用高德，其实我对百度观感也极差，理由就是–作恶多端。<br>功能是要做的，时间也很急，12月上旬左右说的需求，还没有UI图，要求年底前上线，我们大概7个移动端开发人员，全都上了，我主要负责的就是记点，记轨迹，查轨迹的功能，其中遇到了很多很多坑，也算是一种提升吧。  </p>
 <hr>
 <h1 id="过程-amp-难点"><a href="#过程-amp-难点" class="headerlink" title="过程&amp;难点"></a>过程&amp;难点</h1><h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>技术选型预研阶段，与后台考虑过是否自己上传点位，报告位置，一开始是这么选的，后来感觉对于流量还有并发等问题，也是碰巧遇到了高德的猎鹰，研究了下，就直接用人家的接口了，总比花自己的流量要实惠。<br>于是乎我就负责了猎鹰的继承，然后还要帮助同事写一点接口，本文没有关于视图层的东西。</p>
@@ -104,120 +108,94 @@
 <h2 id="电池白名单"><a href="#电池白名单" class="headerlink" title="电池白名单"></a>电池白名单</h2><p>还有一个问题就是，在8.0以后，存在了电池白名单的问题，如果不申请，后台会被限制活动，这里给出方法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 判断用户是否在电池白名单</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> context</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@RequiresApi</span>(api = Build.VERSION_CODES.M)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">inWhiteList</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">boolean</span> isIgnoring = <span class="keyword">false</span>;</span><br><span class="line">    PowerManager powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);</span><br><span class="line">    <span class="keyword">if</span> (powerManager != <span class="keyword">null</span>) &#123;</span><br><span class="line">        isIgnoring = powerManager.isIgnoringBatteryOptimizations(context.getPackageName());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> isIgnoring;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 请求电池白名单</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> context</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Intent <span class="title">doRequestWhiteList</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">    Intent intent = <span class="keyword">new</span> Intent();</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        String packageName = context.getPackageName();</span><br><span class="line">        intent.setAction(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);</span><br><span class="line">        intent.setData(Uri.parse(<span class="string">"package:"</span> + packageName));</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> intent;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h2><p>回头再写…  </p>
 
-      
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src>
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        <li title="0" data-url="http://www.qingheyang.studio:8000/blog_image/blog_music/bgm1.mp3"></li>
+                    
+                        <li title="1" data-url="http://www.qingheyang.studio:8000/blog_image/blog_music/bgm2.flac"></li>
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link" data-ae="true" data-ci="3d9dffcedc9de76a15b0" data-cs="7be14cc9bc5a683e6a47ec31b1f037d12152c562" data-r="QHY_Blog_Issue" data-o="qingheyang" data-a="qingheyang" data-d="false">查看评论</div>
+
+
     </div>
-    <footer class="article-footer">
-      <a data-url="http://blog.qingheyang.studio/archives/1ca89d06.html" data-id="ckag2slm8000lyisu2u1f3cum" class="article-share-link">分享</a>
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/高德/">高德</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
     
-  <nav class="article-nav">
+        <div class="side">
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#过程-amp-难点"><span class="toc-number">2.</span> <span class="toc-text">过程&amp;难点</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#过程"><span class="toc-number">2.1.</span> <span class="toc-text">过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#难点"><span class="toc-number">2.2.</span> <span class="toc-text">难点</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#实现"><span class="toc-number">3.</span> <span class="toc-text">实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#依赖"><span class="toc-number">3.1.</span> <span class="toc-text">依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实体类"><span class="toc-number">3.2.</span> <span class="toc-text">实体类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#轨迹服务"><span class="toc-number">3.3.</span> <span class="toc-text">轨迹服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#前台服务"><span class="toc-number">3.4.</span> <span class="toc-text">前台服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#电池白名单"><span class="toc-number">3.5.</span> <span class="toc-text">电池白名单</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启动服务"><span class="toc-number">3.6.</span> <span class="toc-text">启动服务</span></a></li></ol></li></ol>
+        </div>
     
-    
-      <a href="/archives/abbd6e6.html" class="article-nav-link">
-        <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">文档(Personal Used)</div>
-      </a>
-    
-  </nav>
-
-
-  
-
-  
-    
-  
-
-</article>
-
-
-
-</section>
-  <footer class="footer">
-  
-  <div class="outer">
-    <div class="float-right">
-      <ul class="list-inline">
-  
-    <li><i class="fe fe-smile-alt"></i> <span id="busuanzi_value_site_uv"></span></li>
-  
-</ul>
-    </div>
-    <ul class="list-inline">
-      <li>&copy; 2020 清河阳</li>
-      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
-      <li>Theme  <a href="https://github.com/zhwangart/hexo-theme-ocean">Ocean</a></li>
-    </ul>
-  </div>
-</footer>
-
-</main>
-<aside class="sidebar">
-  <button class="navbar-toggle"></button>
-
-<nav class="navbar">
-  
-    <div class="logo">
-      <a href="/"><img src="/images/ocean_qingheyang.png" alt="清河阳"></a>
-    </div>
-  
-  <ul class="nav nav-main">
-    
-      <li class="nav-item">
-        <a class="nav-item-link" href="/">Home</a>
-      </li>
-    
-      <li class="nav-item">
-        <a class="nav-item-link" href="/archives">Archives</a>
-      </li>
-    
-      <li class="nav-item">
-        <a class="nav-item-link" href="/about">About</a>
-      </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link nav-item-search" title="Search">
-        <i class="fe fe-search"></i>
-        Search
-      </a>
-    </li>
-  </ul>
-</nav>
-
-<nav class="navbar navbar-bottom">
-  <ul class="nav">
-    <li class="nav-item">
-      
-    </li>
-  </ul>
-</nav>
-
-<div class="search-form-wrap">
-  <div class="local-search local-search-plugin">
-  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
-  <div id="local-search-result" class="local-search-result"></div>
 </div>
+
+
+    </div>
 </div>
-</aside>
-<script src="/js/jquery-2.0.3.min.js"></script>
-<script src="/js/lazyload.min.js"></script>
-<script src="/js/busuanzi-2.3.pure.min.js"></script>
-
-
-  <script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-  <script src="/js/search.js"></script>
-
-
-<script src="/js/ocean.js"></script>
-
 </body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
 </html>
