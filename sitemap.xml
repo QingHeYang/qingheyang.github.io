@@ -2,9 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://blog.qingheyang.studio/archives/38cc5a3f.html</loc>
+    <loc>http://blog.qingheyang.studio/about/index.html</loc>
     
-    <lastmod>2019-05-10T14:29:07.951Z</lastmod>
+    <lastmod>2020-05-18T07:24:52.200Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.qingheyang.studio/archives/1ca89d06.html</loc>
+    
+    <lastmod>2020-01-08T12:48:07.330Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.qingheyang.studio/archives/abbd6e6.html</loc>
+    
+    <lastmod>2020-01-06T13:28:01.514Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.qingheyang.studio/archives/db153085.html</loc>
+    
+    <lastmod>2020-01-06T13:25:27.488Z</lastmod>
     
   </url>
   
@@ -68,13 +89,6 @@
     <loc>http://blog.qingheyang.studio/archives/e8e9078e.html</loc>
     
     <lastmod>2019-04-17T09:27:58.188Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.qingheyang.studio/about/index.html</loc>
-    
-    <lastmod>2019-04-11T03:57:27.289Z</lastmod>
     
   </url>
   

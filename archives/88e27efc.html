@@ -1,70 +1,67 @@
-
 <!DOCTYPE html>
-<html lang="Chinese" class="loading">
+<html lang="en">
 <head><meta name="generator" content="Hexo 3.8.0">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>记一次HLS视频加解密方案的过程（2） - 清河阳</title>
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="google" content="notranslate">
-    <meta name="keywords" content="Android QingHeYang 清河阳,"> 
-    <meta name="description" content="三流执行工程师,写在前面上个月花了点时间做了下视频流媒体的方案。传送门:记一次HLS视频加解密方案的过程（1）最后实现的效果是用自己的播放器播放了hls视频流，且视频都加过密了，形成一整套基础的方案。这次呢，出了个,"> 
-    <meta name="author" content="QingHeYang"> 
-    <link rel="alternative" href="atom.xml" title="清河阳" type="application/atom+xml"> 
-    <link rel="icon" href="/img/ocean_q_small.png"> 
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-    <link rel="stylesheet" href="/css/diaspora.css">
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <script>
-         (adsbygoogle = window.adsbygoogle || []).push({
-              google_ad_client: "ca-pub-8691406134231910",
-              enable_page_level_ads: true
-         });
-    </script>
-    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
-    </script>
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
+  <meta charset="utf-8">
+  
+  
+    <meta name="keywords" content="android">
+  
+  
+    <meta name="description" content="三流执行工程师">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    记一次HLS视频加解密方案的过程（2） |
+    
+    清河阳</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
 </head>
 </html>
-<body class="loading">
-    <span id="config-title" style="display:none">清河阳</span>
-    <div id="loader"></div>
-    <div id="single">
-    <div id="top" style="display: block;">
-    <div class="bar" style="width: 0;"></div>
-    <a class="icon-home image-icon" href="javascript:;" data-url="http://blog.qingheyang.studio"></a>
-    <div title="播放/暂停" class="icon-play"></div>
-    <h3 class="subtitle">记一次HLS视频加解密方案的过程（2）</h3>
-    <div class="social">
-        <!--<div class="like-icon">-->
-            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
-        <!--</div>-->
-        <div>
-            <div class="share">
-                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
-            </div>
-            <div id="qr"></div>
-        </div>
-    </div>
-    <div class="scrollbar"></div>
-</div>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-记一次HLS视频加解密方案的过程（2）" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
 
-    <div class="section">
-        <div class="article">
-    <div class="main">
-        <h1 class="title">记一次HLS视频加解密方案的过程（2）</h1>
-        <div class="stuff">
-            <span>五月 06, 2019</span>
-            
-  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Android/">Android</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/HLS/">HLS</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Linux/">Linux</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/ijkPlayer/">ijkPlayer</a></li></ul>
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      记一次HLS视频加解密方案的过程（2）
+    </h1>
+  
 
+      </header>
+    
 
-        </div>
-        <div class="content markdown">
-            <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>上个月花了点时间做了下视频流媒体的方案。<br>传送门:<a href="https://blog.qingheyang.studio/archives/a137cd06.html">记一次HLS视频加解密方案的过程（1）</a><br>最后实现的效果是用自己的播放器播放了hls视频流，且视频都加过密了，形成一整套基础的方案。<br>这次呢，出了个方案的升级版，因为使用场景的限制，导致公司必须要对hls视频流进行二次加密。  </p>
+    
+      <div class="article-meta">
+        <a href="/archives/88e27efc.html" class="article-date">
+  <time datetime="2019-05-06T09:16:00.000Z" itemprop="datePublished">2019-05-06</time>
+</a>
+        
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
+
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+      
+
+      
+        <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>上个月花了点时间做了下视频流媒体的方案。<br>传送门:<a href="https://blog.qingheyang.studio/archives/a137cd06.html">记一次HLS视频加解密方案的过程（1）</a><br>最后实现的效果是用自己的播放器播放了hls视频流，且视频都加过密了，形成一整套基础的方案。<br>这次呢，出了个方案的升级版，因为使用场景的限制，导致公司必须要对hls视频流进行二次加密。  </p>
 <hr>
 <h1 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h1><p>我在网上查了很久，google关于key加密的文章已经读到20页+了。<br>最后只查到了jwplayer这个国外的公司有一种方案，就是对m3u8这个索引文件的AES-128这个字段的获取上面加token，让key文件获取的不是那么容易，但是具体实现还是没有给出来，给出来的android demo也是各种错误，跑不起来。<br>我想各个大厂对自己的hls视频流一定有自己的二次加密的方式，因为我在试用保利威视的sdk的时候，下载了人家的完整的加密视频，但是我没有办法用自己的播放器播出来，所以，肯定做了二次加密的文章。</p>
 <hr>
@@ -127,94 +124,129 @@
 </blockquote>
 <p>以上</p>
 
-            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
-            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
-                <source type="audio/mpeg" src>
-            </audio>
-            
-                <ul id="audio-list" style="display:none">
-                    
-                        <li title="0" data-url="http://www.qingheyang.studio:8000/blog_image/blog_music/bgm1.mp3"></li>
-                    
-                        <li title="1" data-url="http://www.qingheyang.studio:8000/blog_image/blog_music/bgm2.flac"></li>
-                    
-                </ul>
-            
-        </div>
-        
-    <div id="gitalk-container" class="comment link" data-ae="false" data-ci="3d9dffcedc9de76a15b0" data-cs="7be14cc9bc5a683e6a47ec31b1f037d12152c562" data-r="QHY_Blog_Issue" data-o="qingheyang" data-a="qingheyang" data-d="false">查看评论</div>
-
-
+      
     </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.qingheyang.studio/archives/88e27efc.html" data-id="ckag2slmi000qyisudsquindi" class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HLS/">HLS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ijkPlayer/">ijkPlayer</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
     
-        <div class="side">
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#写在前面"><span class="toc-number">1.</span> <span class="toc-text">写在前面</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#过程"><span class="toc-number">2.</span> <span class="toc-text">过程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#方案"><span class="toc-number">3.</span> <span class="toc-text">方案</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#m3u8修改混淆"><span class="toc-number">4.</span> <span class="toc-text">m3u8修改混淆</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Android开启Http服务器"><span class="toc-number">5.</span> <span class="toc-text">Android开启Http服务器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#下载m3u8文件"><span class="toc-number">6.</span> <span class="toc-text">下载m3u8文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#播放视频"><span class="toc-number">7.</span> <span class="toc-text">播放视频</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#接口"><span class="toc-number">7.1.</span> <span class="toc-text">接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现类"><span class="toc-number">7.2.</span> <span class="toc-text">实现类</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-number">8.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#写在最后"><span class="toc-number">9.</span> <span class="toc-text">写在最后</span></a></li></ol>
+  <nav class="article-nav">
+    
+      <a href="/archives/db153085.html" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            Android深入之路:AOP切面编程
+          
         </div>
+      </a>
     
-</div>
+    
+      <a href="/archives/a137cd06.html" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">记一次HLS视频加解密方案的过程（1）</div>
+      </a>
+    
+  </nav>
 
 
+  
+
+  
+    
+  
+
+</article>
+
+
+
+</section>
+  <footer class="footer">
+  
+  <div class="outer">
+    <div class="float-right">
+      <ul class="list-inline">
+  
+    <li><i class="fe fe-smile-alt"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+</ul>
     </div>
+    <ul class="list-inline">
+      <li>&copy; 2020 清河阳</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://github.com/zhwangart/hexo-theme-ocean">Ocean</a></li>
+    </ul>
+  </div>
+</footer>
+
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/ocean_qingheyang.png" alt="清河阳"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">Home</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">Archives</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">About</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="Search">
+        <i class="fe fe-search"></i>
+        Search
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
 </div>
+</div>
+</aside>
+<script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
 </body>
-<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
-<script src="/js/plugin.js"></script>
-<script src="/js/diaspora.js"></script>
-<link rel="stylesheet" href="/photoswipe/photoswipe.css">
-<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
-<script src="/photoswipe/photoswipe.min.js"></script>
-<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
-
-<!-- Root element of PhotoSwipe. Must have class pswp. -->
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-    <!-- Background of PhotoSwipe. 
-         It's a separate element as animating opacity is faster than rgba(). -->
-    <div class="pswp__bg"></div>
-    <!-- Slides wrapper with overflow:hidden. -->
-    <div class="pswp__scroll-wrap">
-        <!-- Container that holds slides. 
-            PhotoSwipe keeps only 3 of them in the DOM to save memory.
-            Don't modify these 3 pswp__item elements, data is added later on. -->
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-        <div class="pswp__ui pswp__ui--hidden">
-            <div class="pswp__top-bar">
-                <!--  Controls are self-explanatory. Order can be changed. -->
-                <div class="pswp__counter"></div>
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-                <button class="pswp__button pswp__button--share" title="Share"></button>
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
-                <!-- element will get class pswp__preloader--active when preloader is running -->
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                      <div class="pswp__preloader__cut">
-                        <div class="pswp__preloader__donut"></div>
-                      </div>
-                    </div>
-                </div>
-            </div>
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div> 
-            </div>
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
 </html>

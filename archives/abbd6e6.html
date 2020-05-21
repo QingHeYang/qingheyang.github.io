@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  
+    <meta name="keywords" content="android">
+  
+  
+    <meta name="description" content="三流执行工程师">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>
+    文档(Personal Used) |
+    
+    清河阳</title>
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  
+  <script src="/js/pace.min.js"></script>
+</head>
+</html>
+<body>
+<main class="content">
+  <section class="outer">
+  <article id="post-文档" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      文档(Personal Used)
+    </h1>
+  
+
+      </header>
+    
+
+    
+      <div class="article-meta">
+        <a href="/archives/abbd6e6.html" class="article-date">
+  <time datetime="2019-12-21T08:33:44.000Z" itemprop="datePublished">2019-12-21</time>
+</a>
+        
+      </div>
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+
+      
+
+      
+        <h2 id="日历页："><a href="#日历页：" class="headerlink" title="日历页："></a>日历页：</h2><p><a href="http://xxxx.xxx.xx:/WeekStory/queryMonth.do?from=1&amp;date=2019-12-01" target="_blank" rel="noopener">http://xxxx.xxx.xx:/WeekStory/queryMonth.do?from=1&amp;date=2019-12-01</a>  (Get)<br>返回结果：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"msg"</span>:<span class="string">"success"</span>,</span><br><span class="line">    <span class="attr">"monthInfo"</span>:[</span><br><span class="line">		<span class="number">2019</span><span class="number">-12</span><span class="number">-21</span></span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="点击日期检查是否有文件"><a href="#点击日期检查是否有文件" class="headerlink" title="点击日期检查是否有文件"></a>点击日期检查是否有文件</h2><p><a href="http://xxxx.xxx.xx:/WeekStory/doSomethingCheck.do?from=1&amp;date=2019-12-21" target="_blank" rel="noopener">http://xxxx.xxx.xx:/WeekStory/doSomethingCheck.do?from=1&amp;date=2019-12-21</a>  (Get)<br>返回结果：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"msg"</span>:<span class="string">"file exist"</span>,</span><br><span class="line">    <span class="attr">"code"</span>:<span class="number">200</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="点击创建文件"><a href="#点击创建文件" class="headerlink" title="点击创建文件"></a>点击创建文件</h2><p><a href="http://xxxx.xxx.xx:/WeekStory/doSomethingCreate.do?from=1&amp;date=2019-12-21" target="_blank" rel="noopener">http://xxxx.xxx.xx:/WeekStory/doSomethingCreate.do?from=1&amp;date=2019-12-21</a>  (Get)<br>返回结果：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="attr">"msg"</span>:<span class="string">"1-20191216-20191222.xls"</span>,<span class="attr">"code"</span>:<span class="number">200</span>&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="进入页面提交所写内容"><a href="#进入页面提交所写内容" class="headerlink" title="进入页面提交所写内容"></a>进入页面提交所写内容</h2><p><a href="http://xxxx.xxx.xx:/WeekStory/doSomethingSubmit.do" target="_blank" rel="noopener">http://xxxx.xxx.xx:/WeekStory/doSomethingSubmit.do</a>    (post)<br>参数：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"workStr1"</span>:<span class="string">"测试工作1"</span>,</span><br><span class="line">    <span class="attr">"workStr2"</span>:<span class="string">"测试工作2"</span>,</span><br><span class="line">    <span class="attr">"workStr3"</span>:<span class="string">"测试工作3"</span>,</span><br><span class="line">    <span class="attr">"lifeStr1"</span>:<span class="string">"测试生活1"</span>,</span><br><span class="line">    <span class="attr">"lifeStr2"</span>:<span class="string">"测试生活2"</span>,</span><br><span class="line">    <span class="attr">"lifeStr3"</span>:<span class="string">"测试生活3"</span>,</span><br><span class="line">    <span class="attr">"bzStr"</span>:<span class="string">"暂无备注"</span>,</span><br><span class="line">    <span class="attr">"sleepTime"</span>:<span class="string">"07:00"</span>,</span><br><span class="line">    <span class="attr">"weakTime"</span>:<span class="string">"23:00"</span>,</span><br><span class="line">    <span class="attr">"curDate"</span>:<span class="string">"2019-12-21"</span>,</span><br><span class="line">    <span class="attr">"user"</span>:<span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="查询已有的某天"><a href="#查询已有的某天" class="headerlink" title="查询已有的某天"></a>查询已有的某天</h2><p><a href="http://xxxx.xxx.xx:/WeekStory/doSomethingQueryDay.do?from=1&amp;date=2019-12-21" target="_blank" rel="noopener">http://xxxx.xxx.xx:/WeekStory/doSomethingQueryDay.do?from=1&amp;date=2019-12-21</a>  (Get)<br>返回结果：  </p>
+<pre><code class="json">{
+    <span class="attr">"workStr1"</span>: <span class="string">"测试工作1"</span>,
+    <span class="attr">"workStr2"</span>: <span class="string">"测试工作2"</span>,
+    <span class="attr">"workStr3"</span>: <span class="string">"测试工作3"</span>,
+    <span class="attr">"lifeStr1"</span>: <span class="string">"测试生活1"</span>,
+    <span class="attr">"lifeStr2"</span>: <span class="string">"测试生活2"</span>,
+    <span class="attr">"lifeStr3"</span>: <span class="string">"测试生活3"</span>,
+    <span class="attr">"bzStr"</span>: <span class="string">"暂无备注"</span>,
+    <span class="attr">"sleepTime"</span>: <span class="string">"07:00"</span>,
+    <span class="attr">"weakTime"</span>: <span class="string">"23:00"</span>,
+    <span class="attr">"dayOfWeek"</span>: <span class="number">0</span>,
+    <span class="attr">"user"</span>: <span class="number">0</span>
+}
+
+</code></pre>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>这些接口均为个人项目接口，待前端来校验。<br>说明写于：2020-01-06  </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.qingheyang.studio/archives/abbd6e6.html" data-id="ckag2slm3000hyisuz0ss5cie" class="article-share-link">分享</a>
+      
+    </footer>
+
+  </div>
+
+  
+    
+  <nav class="article-nav">
+    
+      <a href="/archives/1ca89d06.html" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            深度集成使用高德地图功能--猎鹰（1）   记录轨迹篇
+          
+        </div>
+      </a>
+    
+    
+      <a href="/archives/db153085.html" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Android深入之路:AOP切面编程</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+    
+  
+
+</article>
+
+
+
+</section>
+  <footer class="footer">
+  
+  <div class="outer">
+    <div class="float-right">
+      <ul class="list-inline">
+  
+    <li><i class="fe fe-smile-alt"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+</ul>
+    </div>
+    <ul class="list-inline">
+      <li>&copy; 2020 清河阳</li>
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>Theme  <a href="https://github.com/zhwangart/hexo-theme-ocean">Ocean</a></li>
+    </ul>
+  </div>
+</footer>
+
+</main>
+<aside class="sidebar">
+  <button class="navbar-toggle"></button>
+
+<nav class="navbar">
+  
+    <div class="logo">
+      <a href="/"><img src="/images/ocean_qingheyang.png" alt="清河阳"></a>
+    </div>
+  
+  <ul class="nav nav-main">
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/">Home</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/archives">Archives</a>
+      </li>
+    
+      <li class="nav-item">
+        <a class="nav-item-link" href="/about">About</a>
+      </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="Search">
+        <i class="fe fe-search"></i>
+        Search
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+    </li>
+  </ul>
+</nav>
+
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+</aside>
+<script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/search.js"></script>
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+</html>
